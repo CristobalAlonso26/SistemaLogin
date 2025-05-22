@@ -11,9 +11,16 @@ import java.io.IOException;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LoginTest {
-    Login login = new Login();
-    DatosLogin datos = new DatosLogin();
-
+    private Login login;
+    private DatosLogin datos;
+    @BeforeEach
+            void setup(){
+        login = new Login();
+        try{
+        datos = new DatosLogin();} catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
     LoginTest() throws IOException {
     }
 
