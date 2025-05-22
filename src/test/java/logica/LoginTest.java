@@ -13,7 +13,6 @@ class LoginTest {
     void ValidacionCorrecta() {
         Login login = new Login();
         DatosLogin datos = new DatosLogin();
-            assertTrue(login.autenticar("xiao", "ola123", datos));
+        assertTrue(login.autenticar("xiao", "ola123", datos));
         }
     }
-}

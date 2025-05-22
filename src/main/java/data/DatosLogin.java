@@ -8,7 +8,14 @@ public class DatosLogin {
 
     File archivo = new File("src/main/java/data/login.txt");
     public DatosLogin(){
+        validacionArchivo(archivo);
         cargarUsuarios();
+    }
+    public void validacionArchivo(File archivo){
+        if(!archivo.exists()){
+            System.out.println("la base de datos exploto, el sistema no puede funcionar");
+            System.exit(1);
+        }
     }
     private void cargarUsuarios() {
         try(BufferedReader lector = new BufferedReader(new FileReader(archivo))) {
@@ -18,10 +25,8 @@ public class DatosLogin {
                     credenciales.add(linea);
                 }
             }
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException("la base de datos se ha desintegrado");
         } catch (IOException e) {
-            throw new RuntimeException("error al leer el archivo");
+            throw new RuntimeException("Error al leer el archivo");
         }
 
     }

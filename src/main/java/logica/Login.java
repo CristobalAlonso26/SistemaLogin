@@ -17,12 +17,8 @@ public class Login {
      */
     public boolean autenticar(String usuario, String clave, DatosLogin datos) {
         String intento = usuario + ";" + clave;
-        for(String dato : datos.credenciales){
-            if (dato.equals(intento)){
-                return true;
-            }
-        }
-        return false;
+        return datos.credenciales.contains(intento);
+
         // TODO: Crear String intento = usuario + ";" + clave
         // TODO: Recorrer datos.credenciales y comparar con intento
 
