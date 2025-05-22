@@ -2,6 +2,8 @@ package gui;
 
 import data.DatosLogin;
 import logica.Login;
+
+import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -10,9 +12,12 @@ import java.util.Scanner;
  */
 public class ConsolaLogin {
     Scanner sc = new Scanner(System.in);
-    DatosLogin datos = new DatosLogin();
+    DatosLogin datos;
     Login login = new Login();
 
+    public ConsolaLogin() throws IOException {
+        this.datos = new DatosLogin();
+    }
 
     /**
      * Controla el ciclo principal del menú del sistema.
@@ -24,7 +29,7 @@ public class ConsolaLogin {
             mostrarOpciones();
             opcion = obtenerOpcion();
             ejecutarOpcion(opcion);
-        } while (!(opcion.equals("2")));
+        } while (!opcion.equals("2"));
     }
 
     private void mostrarOpciones() {

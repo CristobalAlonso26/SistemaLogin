@@ -7,14 +7,14 @@ public class DatosLogin {
     public ArrayList<String> credenciales = new ArrayList<>();
 
     File archivo = new File("src/main/java/data/login.txt");
-    public DatosLogin(){
-        validacionArchivo(archivo);
-        cargarUsuarios();
+    public DatosLogin() throws IOException{
+            validacionArchivo(archivo);
+            cargarUsuarios();
+
     }
-    public void validacionArchivo(File archivo){
+    public void validacionArchivo(File archivo) throws IOException {
         if(!archivo.exists()){
-            System.out.println("la base de datos exploto, el sistema no puede funcionar");
-            System.exit(1);
+            throw new IOException("excepcion el archivo no existe");
         }
     }
     private void cargarUsuarios() {
@@ -26,7 +26,7 @@ public class DatosLogin {
                 }
             }
         } catch (IOException e) {
-            System.out.println("error al leer el archivo");
+            System.out.println("error al leer el archivo"+ e.getMessage());
         }
 
     }
