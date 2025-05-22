@@ -22,11 +22,11 @@ public class DatosLogin {
             String linea;
             while ((linea = lector.readLine()) != null) {
                 if(Validadorlineas(linea)){
-                    credenciales.add(linea);
+                    credenciales.add(linea.trim());
                 }
             }
         } catch (IOException e) {
-            throw new RuntimeException("Error al leer el archivo");
+            System.out.println("error al leer el archivo");
         }
 
     }
@@ -34,7 +34,7 @@ public class DatosLogin {
 
         if(!linea.isEmpty()){
             String regex = "^[^ ;]+;[^ ;]+$";
-            return Pattern.matches(regex,linea);
+            return Pattern.matches(regex,linea.trim());
         }
         return false;
     }
