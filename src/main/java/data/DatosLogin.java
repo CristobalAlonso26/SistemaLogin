@@ -4,13 +4,17 @@ import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 public class DatosLogin {
-    public ArrayList<String> credenciales = new ArrayList<>();
 
-    File archivo = new File("src/main/java/data/login.txt");
+    private ArrayList<String> credenciales = new ArrayList<>();
+
+    File archivo = new File("src/main/resources/login.txt");
     public DatosLogin() throws IOException{
             validacionArchivo(archivo);
             cargarUsuarios();
 
+    }
+    public ArrayList<String> getCredenciales() {
+        return credenciales;
     }
     public void validacionArchivo(File archivo) throws IOException {
         if(!archivo.exists()){

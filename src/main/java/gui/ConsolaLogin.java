@@ -2,6 +2,7 @@ package gui;
 
 import data.DatosLogin;
 import logica.Login;
+import logica.SesionActiva;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -47,7 +48,14 @@ public class ConsolaLogin {
      */
     private void ejecutarOpcion(String opcion) {
         switch (opcion){
-            case "1"-> manejarLogin();
+            case "1"-> {
+                String usuario = obtenerUsuario();
+                String contrasenia = obtenerContrasenia();
+                if (manejarLogin(usuario, contrasenia)) {
+                    SesionActiva sesion = new SesionActiva(usuario);
+                    sesion.menuSesion();
+                }
+            }
             case "2"-> System.out.println("Saliendo del programa...");
             default -> System.out.println("ingrese una opción valida");
         }
@@ -56,17 +64,23 @@ public class ConsolaLogin {
     private String obtenerOpcion(){
         return sc.nextLine();
     }
-    private void manejarLogin() {
-        System.out.println("Ingrese su usuario");
-        String usuario= sc.nextLine().toLowerCase().trim();
-        System.out.println("Ingrese su contraseña");
-        String contrasenia = sc.nextLine().toLowerCase().trim();
+    private boolean manejarLogin(String usuario,String contrasenia) {
         if(login.autenticar(usuario,contrasenia,datos)){
             System.out.println("Su cuenta ha sido autenticada correctamente");
+            return true;
         }else{
             System.out.println("Usted no es Usuario");
+            return false;
         }
         // TODO: Pedir usuario y contraseña por consola
         // TODO: Llamar a login.autenticar() y mostrar mensaje según resultado
+    }
+    private String obtenerUsuario(){
+        System.out.println("Ingrese su usuario");
+        return sc.nextLine().toLowerCase().trim();
+    }
+    private String obtenerContrasenia(){
+        System.out.println("Ingrese su contraseña");
+        return sc.nextLine().toLowerCase().trim();
     }
 }
