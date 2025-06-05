@@ -7,3 +7,4 @@ jona;wasd
 joaco;nig
 jesu;god
 xavier;hand
+diego;1

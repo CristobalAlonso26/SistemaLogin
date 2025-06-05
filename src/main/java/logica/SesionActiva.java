@@ -64,15 +64,19 @@ public class SesionActiva {
 
     private void escribirTarea() {
         System.out.println("ingrese una tarea: ");
-        String tarea = scanner.nextLine();
-        datosSesion.EscribirTarea(tarea);
+        datosSesion.EscribirTarea(scanner.nextLine());
     }
+
+
+    // cambiar esto a algo con objeto usuario maybe
 
     private void registrarUsuario() {
         System.out.println("ingrese nuevo usuario");
         String nuevoUsuario = scanner.nextLine().toLowerCase().trim();
         System.out.println("ingrese su nueva contraseña");
         String nuevaContrasenia = scanner.nextLine().toLowerCase().trim();
-        gestorUsuarios.registrar(nuevoUsuario,nuevaContrasenia);
+        if (gestorUsuarios.registrar(nuevoUsuario,nuevaContrasenia)){
+            System.out.println("Registro exitoso");
+        }
     }
 }

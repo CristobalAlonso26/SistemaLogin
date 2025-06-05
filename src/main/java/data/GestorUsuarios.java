@@ -21,13 +21,15 @@ public class GestorUsuarios {
 
     }
 
-    public void registrar(String usuario, String clave) {
+    public boolean registrar(String usuario, String clave) {
         try(BufferedWriter escritor = new BufferedWriter(new FileWriter(archivo,true))){
             escritor.write(usuario + ";" + clave);
             escritor.newLine();
             escritor.flush();
+            return true;
         }catch (IOException e){
             System.out.println("error al registrar el usuario" + e.getMessage());
+            return false;
         }
     }
 }
