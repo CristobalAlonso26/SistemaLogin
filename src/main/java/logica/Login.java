@@ -1,6 +1,9 @@
 package logica;
 
 import data.DatosLogin;
+import data.Usuario;
+
+import java.util.ArrayList;
 
 /**
  * Clase encargada de verificar las credenciales del usuario.
@@ -16,11 +19,20 @@ public class Login {
      * @return true si las credenciales son válidas, false en caso contrario
      */
     public boolean autenticar(String usuario, String clave, DatosLogin datos) {
-        String intento = usuario + ";" + clave;
-        return datos.getCredenciales().contains(intento);
-
-        // TODO: Crear String intento = usuario + ";" + clave
-        // TODO: Recorrer datos.credenciales y comparar con intento
-
+        for (Usuario u : datos.getUsuarios()){
+            if(u.getNombre().equals(usuario) && u.getClave().equals(clave)){
+                return true;
+            }
+        }
+        return false;
     }
+    public Usuario obtenerusuario(String usuario, String clave, DatosLogin datos){
+        for (Usuario u : datos.getUsuarios()){
+            if(u.getNombre().equals(usuario) && u.getClave().equals(clave)){
+                return u;
+            }
+        }
+        return new Usuario(usuario,clave);
+    }
+
 }

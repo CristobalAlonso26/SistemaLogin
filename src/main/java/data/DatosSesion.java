@@ -1,14 +1,16 @@
 package data;
 
 import java.io.*;
+import java.util.ArrayList;
 
 public class DatosSesion {
-    private static int contador = 1;
-    File archivo; // = new File("src/main/resources/" + "usuario" +"_todo.txt");
+    private final File archivo;
+    private final ArrayList<Tarea> tareas = new ArrayList<>();// = new File("src/main/resources/" + "usuario" +"_todo.txt");
 
     public DatosSesion(String usuario) {
         this.archivo = new File("src/main/resources/" + usuario + "_todo.txt");
         VerificarArchivo();
+        CargarTarea();
     }
 
     private Boolean VerificarArchivo() {
@@ -21,20 +23,26 @@ public class DatosSesion {
         }
     }
 
-    public void EscribirTarea(String tarea){
-        try(BufferedWriter escritor = new BufferedWriter(new FileWriter(archivo, true))){
-            escritor.write(contador+ ". "+ tarea );
-            contador++;
-            escritor.newLine();
+    private void GuardarTarea(){
+        try(BufferedWriter escritor = new BufferedWriter(new FileWriter(archivo))){
+            for( Tarea t : tareas){
+                escritor.write(t.getDescripcion());
+                escritor.newLine();
+            }
         }catch (IOException e){
             System.out.println("error al ingresar tarea" + e.getMessage());
 
     }}
-    public void LeerTarea(){
+    public void EscribirTarea(String tarea){
+        tareas.add(new Tarea(tarea));
+        GuardarTarea();
+    }
+
+    public void CargarTarea(){
         try(BufferedReader lector = new BufferedReader(new FileReader(archivo))) {
             String linea;
             while ((linea = lector.readLine()) != null) {
-                System.out.println(linea);
+                tareas.add(new Tarea(linea));
             }
         } catch (IOException e) {
             System.out.println("error al leer el archivo"+ e.getMessage());
@@ -42,4 +50,7 @@ public class DatosSesion {
 
     }
 
+    public ArrayList<Tarea> getTareas() {
+        return tareas;
+    }
 }

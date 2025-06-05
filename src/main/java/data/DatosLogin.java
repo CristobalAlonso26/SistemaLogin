@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 public class DatosLogin {
 
-    private ArrayList<String> credenciales = new ArrayList<>();
+    private ArrayList<Usuario> usuarios = new ArrayList<>();
 
     File archivo = new File("src/main/resources/login.txt");
     public DatosLogin() throws IOException{
@@ -13,20 +13,24 @@ public class DatosLogin {
             cargarUsuarios();
 
     }
-    public ArrayList<String> getCredenciales() {
-        return credenciales;
+
+    public ArrayList<Usuario> getUsuarios() {
+        return usuarios;
     }
+
     public void validacionArchivo(File archivo) throws IOException {
         if(!archivo.exists()){
             throw new IOException("excepcion el archivo no existe");
         }
     }
+
     private void cargarUsuarios() {
         try(BufferedReader lector = new BufferedReader(new FileReader(archivo))) {
             String linea;
             while ((linea = lector.readLine()) != null) {
                 if(Validadorlineas(linea)){
-                    credenciales.add(linea.trim());
+                    String[] elementos = SeparadorLineas(linea);
+                    usuarios.add(new Usuario(elementos[0],elementos[1]));
                 }
             }
         } catch (IOException e) {
@@ -34,6 +38,7 @@ public class DatosLogin {
         }
 
     }
+
     private Boolean Validadorlineas(String linea){
 
         if(!linea.isEmpty()){
@@ -42,4 +47,8 @@ public class DatosLogin {
         }
         return false;
     }
+    private String[] SeparadorLineas(String linea){
+        return linea.trim().split(";");
+    }
+
 }

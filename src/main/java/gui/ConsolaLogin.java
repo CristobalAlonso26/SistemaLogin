@@ -1,6 +1,7 @@
 package gui;
 
 import data.DatosLogin;
+import data.Usuario;
 import logica.Login;
 import logica.SesionActiva;
 
@@ -19,7 +20,6 @@ public class ConsolaLogin {
     public ConsolaLogin() throws IOException {
         this.datos = new DatosLogin();
     }
-
     /**
      * Controla el ciclo principal del menú del sistema.
      */
@@ -49,10 +49,11 @@ public class ConsolaLogin {
     private void ejecutarOpcion(String opcion) {
         switch (opcion){
             case "1"-> {
-                String usuario = obtenerUsuario();
+                String nombre = obtenerUsuario();
                 String contrasenia = obtenerContrasenia();
-                if (manejarLogin(usuario, contrasenia)) {
-                    SesionActiva sesion = new SesionActiva(usuario);
+                if (manejarLogin(nombre, contrasenia)) {
+                    Usuario u = login.obtenerusuario(nombre,contrasenia,datos);
+                    SesionActiva sesion = new SesionActiva(u);
                     sesion.menuSesion();
                 }
             }
