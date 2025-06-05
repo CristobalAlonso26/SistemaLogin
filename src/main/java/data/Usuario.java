@@ -4,8 +4,8 @@ package data;
  * Clase que representa a un usuario del sistema.
  */
 public class Usuario {
-    private String nombre;
-    private String clave;
+    private final String nombre;
+    private final String clave;
 
     /**
      * Constructor que inicializa los atributos del usuario.
@@ -25,10 +25,6 @@ public class Usuario {
 
     public String getClave() {
         return clave;
-    }
-
-    public void setClave(String clave) {
-        this.clave = clave;
     }
 
     @Override

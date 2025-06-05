@@ -33,7 +33,7 @@ public class SesionActiva {
             ejecutarOpcion(opcion);
         } while (!opcion.equals("3"));
     }
-    public void mostrarOpcionesSesion() {
+    private void mostrarOpcionesSesion() {
         System.out.println("=====MENU SESIÓN====");
         System.out.println("1. Escribir tareas");
         System.out.println("2. Mostrar tareas");
@@ -41,6 +41,7 @@ public class SesionActiva {
         if(usuario.getNombre().equals("admin")){
             System.out.println("4. Registrar usuarios");
         }
+        System.out.println("5. Editar Tarea");
     }
 
     private void ejecutarOpcion(String opcion) {
@@ -55,6 +56,7 @@ public class SesionActiva {
                 if(usuario.getNombre().equals("admin")) registrarUsuario();
                 else System.out.println("ingrese una opción valida");
             }
+            case "5"-> EditarTarea();
             default -> System.out.println("ingrese una opción valida");
         }
     }
@@ -79,4 +81,23 @@ public class SesionActiva {
             System.out.println("Registro exitoso");
         }
     }
+    private void EditarTarea(){
+        System.out.println("ingrese el ID de la tarea que desea cambiar");
+        int ID = ObtenerNumero();
+        System.out.println("ingrese la nueva descripción de la tarea");
+        String newDescription = scanner.nextLine();
+        datosSesion.EditarTareaporID(ID,newDescription);
+    }
+
+    private int ObtenerNumero(){
+        int opcion;
+        try {
+            opcion = Integer.parseInt(scanner.nextLine());
+        } catch (NumberFormatException e) {
+            System.out.println("Ingrese un numero valido");
+            return -1;
+        }
+        return opcion;
+    }
+
 }

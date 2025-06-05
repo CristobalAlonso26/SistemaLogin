@@ -5,25 +5,32 @@ package data;
  */
 public class Tarea {
     private String descripcion;
-
+    private final int ID;
+    private static int contador = 1;
     /**
      * Constructor que inicializa la descripción de la tarea.
      * @param descripcion contenido de la tarea
      */
     public Tarea(String descripcion) {
+        this.ID = contador;
         this.descripcion = descripcion;
+        contador++;
     }
 
     public String getDescripcion() {
         return descripcion;
     }
 
-    public void setDescripcion (String descripcion) {
+    public int getID() {
+        return ID;
+    }
+
+    public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
 
     @Override
     public String toString() {
-        return "Tarea: " + getDescripcion();
+        return "Tarea n°" + ID + ": " + getDescripcion();
     }
 }
