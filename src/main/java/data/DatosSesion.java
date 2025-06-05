@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class DatosSesion {
     private final File archivo;
-    private final ArrayList<Tarea> tareas = new ArrayList<>();// = new File("src/main/resources/" + "usuario" +"_todo.txt");
+    private final ArrayList<Tarea> tareas = new ArrayList<>();
 
     public DatosSesion(String usuario) {
         this.archivo = new File("src/main/resources/" + usuario + "_todo.txt");
@@ -13,11 +13,14 @@ public class DatosSesion {
         CargarTarea();
     }
 
+    public ArrayList<Tarea> getTareas() {
+        return tareas;
+    }
+
     private Boolean VerificarArchivo() {
-        try{if(!archivo.exists()){
+        try{
             return archivo.createNewFile();
-        }
-        return true;} catch (IOException e){
+        } catch (IOException e){
             System.out.println("NO S E PUDO CREAR EL ARCHIVO" + e.getMessage());
             return false;
         }
@@ -47,10 +50,13 @@ public class DatosSesion {
         } catch (IOException e) {
             System.out.println("error al leer el archivo"+ e.getMessage());
         }
-
+    }
+    public void EditarTareaporID(int ID, String newdescription ){
+        for (Tarea t : tareas){
+            if(t.getID()==ID){
+                t.setDescripcion(newdescription);
+            }
+        }
     }
 
-    public ArrayList<Tarea> getTareas() {
-        return tareas;
-    }
 }

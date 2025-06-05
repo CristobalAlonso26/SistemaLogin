@@ -13,14 +13,14 @@ public class GestorUsuarios {
 
     public GestorUsuarios() {
         archivo = new File("src/main/resources/login.txt");
-        try {if(!archivo.exists()){
+        try {
             archivo.createNewFile();
-        }}catch (IOException e){
-            System.out.println("vdbsklajdñk" + e.getMessage());
+        }
+        catch (IOException e){
+            System.out.println("el archivo exploto" + e.getMessage());
         }
 
     }
-
     public boolean registrar(String usuario, String clave) {
         try(BufferedWriter escritor = new BufferedWriter(new FileWriter(archivo,true))){
             escritor.write(usuario + ";" + clave);
