@@ -1,11 +1,15 @@
 package data;
 
+import java.util.ArrayList;
+
 /**
  * Clase que representa a un usuario del sistema.
  */
 public class Usuario {
     private final String nombre;
     private final String clave;
+    private final Perfil perfil;
+    private ArrayList<Tarea> tareas = new ArrayList<>();
 
     /**
      * Constructor que inicializa los atributos del usuario.
@@ -13,10 +17,10 @@ public class Usuario {
      * @param nombre nombre del usuario
      * @param clave clave del usuario
      */
-    public Usuario(String nombre, String clave) {
+    public Usuario(String nombre, String clave, Perfil perfil) {
         this.nombre = nombre;
         this.clave = clave;
-        // TODO: Inicializar atributos nombre y clave
+        this.perfil = perfil;
     }
 
     public String getNombre() {
@@ -27,11 +31,16 @@ public class Usuario {
         return clave;
     }
 
+    public Perfil getPerfil() {
+        return perfil;
+    }
+
     @Override
     public String toString() {
         return "Usuario{" +
                 "nombre='" + nombre + '\'' +
                 ", clave='" + clave + '\'' +
+                ", perfil=" + perfil +
                 '}';
     }
 }

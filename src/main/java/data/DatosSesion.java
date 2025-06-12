@@ -37,7 +37,7 @@ public class DatosSesion {
 
     }}
     public void EscribirTarea(String tarea){
-        tareas.add(new Tarea(tarea));
+        tareas.add(new Tarea(tarea, Prioridad.ALTA));
         GuardarTarea();
     }
 
@@ -45,7 +45,7 @@ public class DatosSesion {
         try(BufferedReader lector = new BufferedReader(new FileReader(archivo))) {
             String linea;
             while ((linea = lector.readLine()) != null) {
-                tareas.add(new Tarea(linea));
+                tareas.add(new Tarea(linea, Prioridad.ALTA));
             }
         } catch (IOException e) {
             System.out.println("error al leer el archivo"+ e.getMessage());
