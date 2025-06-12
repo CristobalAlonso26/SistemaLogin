@@ -84,4 +84,8 @@ public class ConsolaLogin {
         System.out.println("Ingrese su contraseña");
         return sc.nextLine().toLowerCase().trim();
     }
+    private String obtenerCorreo(){
+        System.out.println("Ingrese su correo");
+        return sc.nextLine().toLowerCase().trim();
+    }
 }

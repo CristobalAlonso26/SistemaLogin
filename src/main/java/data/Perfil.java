@@ -16,4 +16,11 @@ public class Perfil {
     public LocalDateTime getFechaCreacion(){
         return fechaCreacion;
     }
+    @Override
+    public String toString() {
+        return "Perfil{" +
+                "correo='" + correo + '\'' +
+                ", fechaCreacion=" + fechaCreacion +
+                '}';
+    }
 }

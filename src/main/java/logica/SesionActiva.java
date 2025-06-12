@@ -1,9 +1,6 @@
 package logica;
 
-import data.DatosSesion;
-import data.GestorUsuarios;
-import data.Tarea;
-import data.Usuario;
+import data.*;
 
 import java.util.Scanner;
 
@@ -46,10 +43,10 @@ public class SesionActiva {
 
     private void ejecutarOpcion(String opcion) {
         switch (opcion){
-            case "1"-> escribirTarea();
+            case "1"-> ingresarTarea();
             case "2" -> {
                 for (Tarea t : datosSesion.getTareas()){
-                    System.out.println(t.toString());
+                    System.out.println(t.getID() +".- " + t.toString());
                 }}
             case "3"-> System.out.println("saliendo....");
             case "4"-> {
@@ -57,6 +54,7 @@ public class SesionActiva {
                 else System.out.println("ingrese una opción valida");
             }
             case "5"-> EditarTarea();
+            case "6"-> System.out.println("hola");
             default -> System.out.println("ingrese una opción valida");
         }
     }
@@ -64,11 +62,24 @@ public class SesionActiva {
         return scanner.nextLine();
     }
 
-    private void escribirTarea() {
-        System.out.println("ingrese una tarea: ");
-        datosSesion.EscribirTarea(scanner.nextLine());
+    private void ingresarTarea() {
+        System.out.println("Ingrese una tarea: ");
+        String tarea= scanner.nextLine();
+        Prioridad prioridad = obtenerPrioridad();
+        datosSesion.EscribirTarea(tarea,prioridad);
     }
-
+    private Prioridad obtenerPrioridad(){
+        System.out.println("ingrese la prioridad de la tarea (BAJA, MEDIA, ALTA):");
+        String prioridad = scanner.nextLine().toUpperCase().trim();
+        while (true){
+            try {
+                return Prioridad.valueOf(prioridad);
+            }catch (IllegalArgumentException e){
+                System.out.println("Ingrese una prioridad valida");
+                prioridad = scanner.nextLine().toUpperCase().trim();
+            }
+        }
+    }
 
     // cambiar esto a algo con objeto usuario maybe
 

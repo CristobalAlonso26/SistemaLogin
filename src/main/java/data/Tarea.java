@@ -6,17 +6,23 @@ package data;
 public class Tarea {
     private String descripcion;
     private final int ID;
-    private Prioridad prioridad;
-    private static int contador = 1;
+    private final Prioridad prioridad;
+    private boolean finalizada = false;
+    private HistorialSesion historialSesion = new HistorialSesion(java.time.LocalDateTime.now());
     /**
      * Constructor que inicializa la descripción de la tarea.
      * @param descripcion contenido de la tarea
      */
-    public Tarea(String descripcion, Prioridad prioridad) {
-        this.ID = contador;
+    public Tarea(int ID ,String descripcion, Prioridad prioridad) {
+        this.ID = ID;
         this.descripcion = descripcion;
         this.prioridad = prioridad;
-        contador++;
+    }
+    public Tarea(int ID, String descripcion, Prioridad prioridad, boolean finalizada) {
+        this.ID = ID;
+        this.descripcion = descripcion;
+        this.prioridad = prioridad;
+        this.finalizada = finalizada;
     }
 
     public String getDescripcion() {
@@ -33,9 +39,15 @@ public class Tarea {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+    public void marcarFinalizada(){
+        finalizada = true;
+    }
+    public boolean estaFinalizada(){
+        return finalizada;
+    }
 
     @Override
     public String toString() {
-        return "Tarea n°" + ID + ": " + getDescripcion() + " " + prioridad;
+        return  getDescripcion() + ";" + prioridad + ";" + finalizada;
     }
 }

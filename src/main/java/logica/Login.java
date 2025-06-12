@@ -1,6 +1,7 @@
 package logica;
 
 import data.DatosLogin;
+import data.Perfil;
 import data.Usuario;
 
 import java.util.ArrayList;
@@ -32,7 +33,7 @@ public class Login {
                 return u;
             }
         }
-        return new Usuario(usuario,clave);
+        return new Usuario(usuario,clave,new Perfil("generico@ufromail.cl"));
     }
 
 }

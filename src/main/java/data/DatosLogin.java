@@ -30,7 +30,7 @@ public class DatosLogin {
             while ((linea = lector.readLine()) != null) {
                 if(Validadorlineas(linea)){
                     String[] elementos = SeparadorLineas(linea);
-                    usuarios.add(new Usuario(elementos[0],elementos[1]));
+                    usuarios.add(new Usuario(elementos[0],elementos[1],new Perfil(elementos[2])));
                 }
             }
         } catch (IOException e) {
@@ -42,8 +42,8 @@ public class DatosLogin {
     private Boolean Validadorlineas(String linea){
 
         if(!linea.isEmpty()){
-            String regex = "^[^ ;]+;[^ ;]+$";
-            return Pattern.matches(regex,linea.trim());
+            String regex = "^[^ ;]+;[^ ;]+;[^ ;]$";
+            return true;
         }
         return false;
     }

@@ -8,11 +8,9 @@ public class HistorialSesion {
 
     public HistorialSesion(LocalDateTime inicio) {
         this.inicio = inicio;
-        this.tareasAgregadas = 0;
+        this.tareasAgregadas = 1;
     }
-
-
-    public void registrarNuevaTarea(){
+    public void registrarNuevaTarea(Tarea tarea){
         tareasAgregadas++;
     }
 
