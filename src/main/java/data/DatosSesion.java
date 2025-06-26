@@ -30,7 +30,7 @@ public class DatosSesion {
     private void GuardarTarea(){
         try(BufferedWriter escritor = new BufferedWriter(new FileWriter(archivo))){
             for( Tarea t : tareas){
-                escritor.write(t.getDescripcion()+ ";" + t.getPrioridad());
+                escritor.write(t.getDescripcion()+ ";" + t.getPrioridad()+ ";" + t.estaFinalizada());
                 escritor.newLine();
             }
         }catch (IOException e){
@@ -64,6 +64,31 @@ public class DatosSesion {
                 t.setDescripcion(newdescription);
             }
         }
+    }
+    public ArrayList<Tarea> mostrarTareasActivas(){
+        ArrayList<Tarea> tareasActivas = new ArrayList<>();
+        for (Tarea t : tareas){
+            if(!t.estaFinalizada()){
+                tareasActivas.add(t);
+            }
+        }
+        return tareasActivas;
+    }
+    public void finalizarTarea(int ID){
+        for (Tarea t : tareas){
+            if(t.getID()==ID){
+                t.marcarFinalizada();
+            }
+        }
+    }
+    public ArrayList<Tarea> mostrarTareasFinalizadas(){
+        ArrayList<Tarea> tareasFinalizadas = new ArrayList<>();
+        for (Tarea t : tareas){
+            if(t.estaFinalizada()){
+                tareasFinalizadas.add(t);
+            }
+        }
+        return tareasFinalizadas;
     }
 
 

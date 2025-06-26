@@ -22,7 +22,9 @@ public class Usuario {
         this.clave = clave;
         this.perfil = perfil;
     }
-
+    public ArrayList<Tarea> getTareas() {
+        return tareas;
+    }
     public String getNombre() {
         return nombre;
     }

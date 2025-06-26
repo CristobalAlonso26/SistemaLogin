@@ -8,9 +8,12 @@ public class DatosLogin {
     private ArrayList<Usuario> usuarios = new ArrayList<>();
 
     File archivo = new File("src/main/resources/login.txt");
-    public DatosLogin() throws IOException{
-            validacionArchivo(archivo);
-            cargarUsuarios();
+    public DatosLogin(){
+            try{validacionArchivo(archivo);
+            cargarUsuarios();}
+            catch (IOException e){
+                System.out.println("error al leer el archivo"+ e.getMessage());
+            }
 
     }
 

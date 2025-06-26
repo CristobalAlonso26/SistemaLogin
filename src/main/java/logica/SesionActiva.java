@@ -39,6 +39,9 @@ public class SesionActiva {
             System.out.println("4. Registrar usuarios");
         }
         System.out.println("5. Editar Tarea");
+        System.out.println("6. Mostrar tareas activas");
+        System.out.println("7. Obtener tareas finalizadas");
+        System.out.println("8. finalizar tarea");
     }
 
     private void ejecutarOpcion(String opcion) {
@@ -54,7 +57,12 @@ public class SesionActiva {
                 else System.out.println("ingrese una opción valida");
             }
             case "5"-> EditarTarea();
-            case "6"-> System.out.println("hola");
+            case "6"-> System.out.println(datosSesion.mostrarTareasActivas());
+            case "7"-> System.out.println(datosSesion.mostrarTareasFinalizadas());
+            case "8"-> {
+                datosSesion.finalizarTarea(ObtenerNumero());
+                System.out.println("Tarea finalizada");
+            }
             default -> System.out.println("ingrese una opción valida");
         }
     }
